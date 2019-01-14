@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="jumbotron bg-dark text-white">
+            <h1 class="display-4 text-center">VVV-Group</h1>
+            <p class="lead text-center">Продажа толщиномеров лакокрасочного покрытия</p>
+            <p class="text-center">Официальный дилер в г. Мариуполь</p>
+            <hr class="my-4">
+            <div class="w-100 text-center">
+                <a class="text-center btn btn-lg btn-info">+380975665353</a>
+                <a class="text-center btn btn-lg btn-info">+380994899053</a>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for item in items %}
+                <div class="col-12 col-sm-6 col-md-4 my-3">
+                    <div class="card text-white bg-dark">
+                        {% thumbnail item.title_image.image "1000x500" padding=True as im %}
+                            <img src="{{ im.url }}" alt="" class="card-img-top">
+                        {% endthumbnail %}
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="card-title">{{ item.title }}</h5>
+                                </div>
+                                <div>
+                                    <h5>
+                                        <span class="badge badge-success">{{ item.price }} грн.</span>
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <p class="card-text">{{ item.short_description }}</p>
+                            <p class="card-text">
+                                <a class="btn btn-primary btn-block" href="{% url 'detail' item_id=item.id %}">Узнать
+                                    больше</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
