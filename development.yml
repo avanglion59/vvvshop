@@ -1,0 +1,26 @@
+version: '3.3'
+
+volumes:
+  postgres_data: {}
+
+services:
+  django:
+    build:
+      context: .
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    command: /start.sh
+    entrypoint: /entrypoint.sh
+    restart: on-failure
+    env_file: .env.development
+    ports:
+      - "8000:8000"
+
+
+  postgres:
+    image: postgres:10-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file: .env.development
