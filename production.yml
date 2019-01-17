@@ -16,7 +16,7 @@ services:
     restart: on-failure
     env_file: .env.production
     ports:
-      - "8000:8000"
+      - "8001:8000"
 
   postgres:
     image: postgres:10-alpine
