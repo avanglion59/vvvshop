@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'sorl.thumbnail',
     'ckeditor',
+    'analytical',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR('media')
 
 STATIC_ROOT = BASE_DIR('staticfiles')
+
+# Google Analytics
+
+GOOGLE_ANALYTICS_PROPERTY_ID = env('GOOGLE_ANALYTICS_PROPERTY_ID', default=None)
